@@ -80,7 +80,6 @@ public class Application {
     System.out.println();
     
     for(Product cartItem: cart) {
-    	
         System.out.println(cartItem.getProductID() + "    " + cartItem.getProductName() + "    " + "Quanity: " + cartItem.getProductQty() + "    Price: €" + cartItem.getProductQty()*cartItem.getProductPrice());
     }
 	System.out.println();
@@ -125,10 +124,10 @@ public class Application {
 						}
 				}
 				System.out.println("----------------------------------------------");
-				addToCart();
+				addToCartMenu();
 			}		
 	
-	private static void addToCart() {
+	private static void addToCartMenu() {
 		System.out.println("----------------------------------------------");
 		System.out.println("If you would like to add a product to cart");
 		System.out.println("Press y for yes");
@@ -157,7 +156,7 @@ public class Application {
 				break;
 			}
 		}
-		addToCart();
+		addToCartMenu();
 	}
 	private static void adminMenu() {
 		
@@ -175,7 +174,7 @@ public class Application {
 		switch(choice) {
 			case"1":{
 				try {
-					addNewProduct();
+					addNewProductMenu();
 				} catch (Exception e) {
 					System.out.println("An error was logged.");
 				}
@@ -186,7 +185,7 @@ public class Application {
 				break;
 			}
 			case "3":{
-				removeProducts();
+				removeProductsMenu();
 				break;
 			}
 			case "4":{
@@ -206,7 +205,7 @@ public class Application {
 		adminMenu();
 	}
 
-	private static void removeProducts() {
+	private static void removeProductsMenu() {
 		System.out.println("----------------------------------------------");
 		System.out.println("Press 1 to remove Boots");
 		System.out.println("Press 2 to remove Jersey");
@@ -243,7 +242,7 @@ public class Application {
 				break;
 			}
 		}
-		removeProducts();		
+		removeProductsMenu();		
 	}
 	
 /* Algorithm
@@ -352,13 +351,12 @@ public class Application {
 	
 
 
-	private static void addNewProduct() {
+	private static void addNewProductMenu() {
 		System.out.println("----------------------------------------------");
 		System.out.println("Press 1 to Add new Boots");
 		System.out.println("Press 2 to Add new Jersey");
 		System.out.println("Press a to Return to Admin Menu");
 		System.out.println("----------------------------------------------");
-
 		
 		String choice = input.next();
 		choice = choice.toLowerCase();
@@ -389,7 +387,7 @@ public class Application {
 				break;
 			}
 		}
-		addNewProduct();
+		addNewProductMenu();
 	}
 
 	private static void editProducts() {
@@ -399,7 +397,6 @@ public class Application {
 		System.out.println("Press a to Return to Admin Menu");
 		System.out.println("----------------------------------------------");
 
-		
 		String choice = input.next();
 		choice = choice.toLowerCase();
 		
@@ -544,7 +541,6 @@ public class Application {
 				currentJersey.setJerseySport(reader.readLine());
 				break;
 			}
-			
 			case "a":{
 				adminMenu();
 				break;
@@ -612,7 +608,6 @@ public class Application {
 				currentBoots.setBootMaterial(reader.readLine());
 				break;
 			}
-			
 			case "a":{
 				adminMenu();
 				break;
@@ -649,25 +644,33 @@ public class Application {
 	
 		System.out.println("Enter Product Name");
 		b.setProductName(reader.readLine());	
+
 		System.out.println("Enter Product Type");
 		b.setProductType(reader.readLine());	
+
 		System.out.println("Enter Product Brand");
 		b.setProductBrand(reader.readLine());	
+
 		System.out.println("Enter Product Price");
 		b.setProductPrice(input.nextDouble());	
+
 		System.out.println("Enter Boots Size");
 		b.setBootSize(input.nextDouble());	
+
 		System.out.println("Enter Product Colour");
 		b.setBootColour(reader.readLine());	
+
 		System.out.println("Enter Product Material");
 		b.setBootMaterial(reader.readLine());	
+
 		System.out.println("Enter Product Quanity");
-		b.setBootSize(input.nextInt());	
+		b.setProductQty(input.nextInt());	
+
 		stock.add(b);
 	
 	}
 	
-private static void addNewJersey() throws Exception {
+	private static void addNewJersey() throws Exception {
 		
 		Jerseys j = new Jerseys();
 		
@@ -676,24 +679,34 @@ private static void addNewJersey() throws Exception {
 	
 		System.out.println("Enter Product Name");
 		j.setProductName(reader.readLine());	
+
 		System.out.println("Enter Product Type");
 		j.setProductType(reader.readLine());	
+
 		System.out.println("Enter Product Brand");
 		j.setProductBrand(reader.readLine());	
+
 		System.out.println("Enter Product Price");
 		j.setProductPrice(input.nextDouble());	
+
 		System.out.println("Enter Boots Size");
 		j.setJerseySize(reader.readLine());	
+
 		System.out.println("Enter Product Colour");
 		j.setJerseyColour(reader.readLine());	
-		System.out.println("Enter Product Material");
-		j.setJerseyColour(reader.readLine());	
-		System.out.println("Enter Product Material");
+
+		System.out.println("Enter Product Team");
+		j.setJerseyTeam(reader.readLine());	
+
+		System.out.println("Enter Product Sport");
 		j.setJerseySport(reader.readLine());
+
 		System.out.println("Enter Product Quanity");
 		j.setProductQty(input.nextInt());	
+
 		stock.add(j);
 		
+	
 	}
 	private static void bootsMenu() {
 		
@@ -733,7 +746,6 @@ private static void addNewJersey() throws Exception {
 				break;
 			}
 		}
-		
 		bootsMenu();
 	}
 	
@@ -766,7 +778,7 @@ private static void addNewJersey() throws Exception {
 			}
 		}
 		System.out.println("----------------------------------------------");
-		addToCart();
+		addToCartMenu();
 	}
 	
 	private static void bootsByAdidas() {
@@ -798,7 +810,7 @@ private static void addNewJersey() throws Exception {
 			}
 		}
 		System.out.println("----------------------------------------------");
-		addToCart();
+		addToCartMenu();
 	}
 
 	private static void showAllBoots() {
@@ -829,7 +841,7 @@ private static void addNewJersey() throws Exception {
 			}
 		}
 		System.out.println("----------------------------------------------");
-		addToCart();
+		addToCartMenu();
 	}
 	
 	
@@ -905,7 +917,7 @@ private static void addNewJersey() throws Exception {
 			}
 		}
 		System.out.println("----------------------------------------------");
-		addToCart();
+		addToCartMenu();
 		}
 
 	private static void jerseysByAdidas() {
@@ -938,7 +950,7 @@ private static void addNewJersey() throws Exception {
 			}
 		}
 		System.out.println("----------------------------------------------");
-		addToCart();	
+		addToCartMenu();	
 	}
 	private static void showAllJerseys() {
 		System.out.println("-----------Jerseys by All------------------");
@@ -968,7 +980,7 @@ private static void addNewJersey() throws Exception {
 				}
 		}
 		System.out.println("----------------------------------------------");
-		addToCart();
+		addToCartMenu();
 		}
 	
 	private static void shoppingCart() {
@@ -1020,6 +1032,7 @@ private static void addNewJersey() throws Exception {
 	    for(Product cartItem: cart) {
 	        System.out.println(cartItem.getProductID() + "\t" + cartItem.getProductName() + "\t" + "Quanity: " + cartItem.getProductQty() + "  Price: €" + cartItem.getProductPrice());
 	    }
+
 		System.out.println();
 		System.out.println("Cart Total: " + paymentDue);
 		System.out.println("----------------------------------------------");
@@ -1082,7 +1095,7 @@ private static void addNewJersey() throws Exception {
 	            stockItem.setProductPrice(cartItem.getProductPrice());
 	            stockItem.setProductQty(cartItem.getProductQty());
 	            
-	            System.out.println("How many units do you wish to add remove from your cart?");
+	            System.out.println("How many units do you wish to remove from your cart?");
 	            int cartQty = input.nextInt();
 	            
 	            // If units entered is greater than the stock it shows not enough in stock
@@ -1101,6 +1114,7 @@ private static void addNewJersey() throws Exception {
 	            paymentDue -= stockItem.getProductPrice() * stockItem.getProductQty() ;
 	            break;
 	        }
+
 	        if(isFound==false) {
 	    		System.out.println("----------------------------------------------");
 	    		System.out.println("No Product with id " + chosenProduct + " was found.");
@@ -1133,6 +1147,7 @@ private static void addNewJersey() throws Exception {
 			double change = moneyEntered - paymentDue;
 			System.out.println("Change due: €" + currency.format(change));
 		}
+
 		System.out.println("-----------------receipt-----------------------");
 	    System.out.println();
 	    
