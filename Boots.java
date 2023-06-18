@@ -1,3 +1,4 @@
+
 public class Boots extends Product {
 
 	private double bootSize;

@@ -74,19 +74,22 @@ public class Application {
 
 	private static void viewCart() {
 
-	 
 	System.out.println("-----------------Cart-------------------------");
     System.out.println("Currently in Cart: ");
     System.out.println();
-    
-    for(Product cartItem: cart) {
-        System.out.println(cartItem.getProductID() + "    " + cartItem.getProductName() + "    " + "Quanity: " + cartItem.getProductQty() + "    Price: €" + cartItem.getProductQty()*cartItem.getProductPrice());
-    }
+
+    // Prints the product Id, Name, Quanity, Price
+		for(Product cartItem: cart) {
+			System.out.println(cartItem.getProductID() + "    " + cartItem.getProductName() + "    " + "Quanity: " + cartItem.getProductQty() + "    Price: €" + cartItem.getProductQty()*cartItem.getProductPrice());
+		}
+
 	System.out.println();
 	System.out.println("Cart Total: €" + paymentDue);
 	System.out.println("----------------------------------------------");
+
 	payNow();
 	}
+
 	private static void shopAll() {
 			
 			System.out.println("-----------------All Products--------------------");
@@ -98,14 +101,14 @@ public class Application {
 					System.out.println("  ID: " + p.getProductID());
 					System.out.println("  Brand: " + p.getProductBrand());
 					System.out.println("  Price: €" + p.getProductPrice());
-
+				
 					if(Boots.class.equals(p.getClass())) {
 						Boots b =(Boots) p;
 						System.out.println("  Size: " + b.getBootSize() + " eu");
 						System.out.println("  Colour: " + b.getBootColour());
 						System.out.println("  Material: " + b.getBootMaterial());
-						
 					}
+
 					else if(Jerseys.class.equals(p.getClass())) {
 						Jerseys j = (Jerseys) p; //Cast Person as Employee
 						System.out.println("  Size: " + j.getJerseySize());
@@ -116,8 +119,8 @@ public class Application {
 					
 					if(p.getProductQty() >= 0) {
 						System.out.println(" Product Qty: " + p.getProductQty());
-					
 					}
+						//If selected product has less or equal to 0 in stock, it will print "Out of Stock"
 						else {
 							System.out.println(" Out of Stock");
 							
@@ -667,7 +670,6 @@ public class Application {
 		b.setProductQty(input.nextInt());	
 
 		stock.add(b);
-	
 	}
 	
 	private static void addNewJersey() throws Exception {
@@ -706,7 +708,6 @@ public class Application {
 
 		stock.add(j);
 		
-	
 	}
 	private static void bootsMenu() {
 		
@@ -764,6 +765,7 @@ public class Application {
 					System.out.println("  Size: " + b.getBootSize() + " eu");
 					System.out.println("  Colour: " + b.getBootColour());
 					System.out.println("  Material: " + b.getBootMaterial());
+
 					if(p.getProductQty() >= 0) {
 						System.out.println(" Product Qty: " + p.getProductQty());
 						System.out.println();
@@ -796,6 +798,7 @@ public class Application {
 					System.out.println("  Size: " + b.getBootSize() + " eu");
 					System.out.println("  Colour: " + b.getBootColour());
 					System.out.println("  Material: " + b.getBootMaterial());
+
 					if(p.getProductQty() >= 0) {
 						System.out.println(" Product Qty: " + p.getProductQty());
 						System.out.println();
@@ -1079,6 +1082,7 @@ public class Application {
 	}
 
 	private static void removeCartItem() {
+
 		for(Product p: cart) {
 			System.out.println("ID: " + p.getProductID() + "\t " + p.getProductName());
 		}
@@ -1101,12 +1105,14 @@ public class Application {
 	            // If units entered is greater than the stock it shows not enough in stock
 	            while(cartQty > cartItem.getProductQty()) {
 	                System.out.println("Not enough items in cart.");
-	                System.out.println("Current stock: " + cartItem.getProductQty());
+	                System.out.println ("Current stock: " + cartItem.getProductQty());
 	                System.out.println("Please try again.");
 	                cartQty = input.nextInt();
 	            }
 	            // If units entered is 0 or less an error appears
 	            
+				stockItem.setProductQty(stockItem.getProductQty() + cartQty);
+
 	            cartItem.setProductQty(cartItem.getProductQty() -  cartQty);
 	            
 	            stock.add(stockItem);
@@ -1134,16 +1140,16 @@ public class Application {
 		System.out.println("Please enter payment");
 		double moneyEntered = input.nextDouble(); //Holds money entered 
 		
-		while(moneyEntered<paymentDue) {
+		while(moneyEntered<paymentDue) { // loop continues until the money entered is greater than or equal to the payment due, at which point the loop exits
 			double balance = paymentDue - moneyEntered;
 			System.out.println("Balance Remaining: " + currency.format(balance));
-			System.out.println("Please enter remaining balance."); 
-			moneyEntered = moneyEntered + input.nextDouble();
+			System.out.println("Please enter remaining balance..."); 
+			moneyEntered = moneyEntered + input.nextDouble(); 
 		}
-	
+		
 		System.out.println("Transaction Successful, Please take your product.");
 		
-		if(moneyEntered>paymentDue) {
+		if(moneyEntered>paymentDue) { 
 			double change = moneyEntered - paymentDue;
 			System.out.println("Change due: €" + currency.format(change));
 		}
@@ -1152,20 +1158,20 @@ public class Application {
 	    System.out.println();
 	    
 	    for(Product cartItem: cart) {
-	    	
 	        System.out.println(cartItem.getProductID() + "   " + cartItem.getProductName() + "    " + "Quanity: " + cartItem.getProductQty() + "    Price: €" + cartItem.getProductQty()*cartItem.getProductPrice());
 	    }
+
 		double change = moneyEntered - paymentDue;
 		System.out.println();
 		System.out.print("Total due: €" + paymentDue);
 		System.out.print("  Payment: €" + moneyEntered);
 		System.out.println("\t Change due: €" + currency.format(change));
 		System.out.println("----------------------------------------------");			
-		cart.clear();
-		paymentDue = 0;
+
+		cart.clear(); //Clears Cart
+		paymentDue = 0; 
 		mainMenu();
 	}				
-
 
 	private static void prePopulate() {
 				
@@ -1198,7 +1204,7 @@ public class Application {
 		allBoots.add(Copa);
 		allBoots.add(Tekela);
 		allBoots.add(Vapor);
-		
+	
 		Jerseys Mbappe = new Jerseys(1001,"Mbappe Kylian","Jersey","Nike",200,2,"M","Blue","PSG","Football");
 		Jerseys Messi = new Jerseys(1002,"Lionel Messi","Jersey","Nike",200,4,"L","White","BCN","Football");
 		Jerseys Ronaldo = new Jerseys(1003,"Cristiano Ronaldo","Jersey","Adidas",200,2,"M","Red","MUN","Football");
@@ -1210,7 +1216,6 @@ public class Application {
 		Jerseys Betts = new Jerseys(1009,"Mookie Betts","Jersey","Adidas",159.99,2,"M","White","LAD","Baseball");
 		Jerseys Tatis = new Jerseys(1011,"Fernando Tatis Jr.","Jersey","Nike",169.99,2,"S","Grey","SDP","Baseball");
 		Jerseys Kershaw = new Jerseys(1012,"Clayton Kershaw","Jersey","Nike",149.99,6,"M","Green","LAD","Baseball");
-
 	
 		stock.add(Mbappe);
 		stock.add(Messi);

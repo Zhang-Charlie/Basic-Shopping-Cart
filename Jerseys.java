@@ -1,3 +1,4 @@
+
 public class Jerseys extends Product {
 
 	private String jerseySize;
